@@ -1,6 +1,12 @@
-/*
- * Denne fil kalder en funktion i filen start.js, der ligger i library-mappen, 
- * og som I ikke skal ændre ved i denne opgave. Til gengæld kunne man forestille 
- * sig at der her blev indsat et
- */
-start(new Taxameter());
+/*Her laves det store regnestykke for prisen så, med de priser der 
+passer til bilen.*/ 
+class TaxaPriceStrategy {
+    beregnPris(TidIMin, AfstandKm) {
+        if(AfstandKm <= 1) {
+            return (5 *(AfstandKm)) + (6.25 * TidIMin) + 39;
+        }else{    
+            return (9 * (AfstandKm)) + (6.25 * TidIMin) + 39;
+        }
+    }
+}
+start(new Taxameter(clock, new TaxaPriceStrategy()));

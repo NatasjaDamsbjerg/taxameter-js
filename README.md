@@ -1,6 +1,3 @@
-# Taxameter.js
-## En opgave i Strategy Pattern
-
 ### Opgave 1
 KroneTaxa skal have udviklet et nyt stykke software til at beregne prisen på en taxa tur, og har bedt dig om hjælp. De har allerede et gammelt system til at vise data'en og interagere med systemet - altså skal de bare have hjælp til en lille del af systemet.
 
