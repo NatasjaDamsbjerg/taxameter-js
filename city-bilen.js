@@ -2,7 +2,7 @@
 passer til bilen.*/ 
 class CitybilPriceStrategy {
     beregnPris(turTidMinutter, turAfstand) {
-            return (4.5 * (Math.floor(turAfstand)+1) + (7 * turTidMinutter) + 75);
+            return (4.5 * (Math.floor(turAfstand)+1) + (7 * turTidMinutter));
     }
 }
 start(new Taxameter(clock, new CitybilPriceStrategy()));

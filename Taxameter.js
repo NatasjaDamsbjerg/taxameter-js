@@ -43,6 +43,11 @@ class Taxameter {
         this.turStartetTidspunkt = undefined;
         this.priceStrategy = priceStrategy;
     }
+
+    getStartetTidspunkt() {
+        return this.turStartetTidspunkt;
+    }
+
     //StartTur starter klokken når turen startes.
     startTur() {
         this.turStartetTidspunkt = this.clock.now();
