@@ -54,6 +54,7 @@ class Taxameter {
     }
     //Når turen sluttes, nulsilles alt.
     slutTur() {
+        alert("Det bliver: " + taxameter.beregnPris() + " DKK");
         this.afstand = 0;
         this.turStartetTidspunkt = undefined;
     }
@@ -75,4 +76,84 @@ class Taxameter {
     }
 }
 
+class SimpleTaxameterDecorator {
+    constructor (taxameter) {
+        this.taxameter = taxameter;
+        this.chauffør = "Mogens"
+    }
+
+    getStartetTidspunkt() {
+        return this.taxameter.getStartetTidspunkt();
+    }
+
+    get afstand() {
+        return this.taxameter.afstand;
+    }
+
+    startTur() {
+        const resultat = this.taxameter.startTur();
+        console.log(`${this.chauffør} har taget en tur og er optaget`);
+        return resultat;
+    }
+
+    slutTur() {
+        const resultat = this.taxameter.slutTur();
+        console.log(`${this.chauffør} har netop afsluttet en tur og er ledig`);
+        return resultat;
+    }
+
+    koer(delta_afst) {
+        return this.taxameter.koer(delta_afst);
+    }
+
+    beregnPris() {
+        return this.taxameter.beregnPris();
+    }
+}
+
+class statisticDecorator {
+    constructor (taxameter) {
+        this.taxameter = taxameter;
+        this.antalKort = 0;
+        this.antalLang = 0;
+    }
+
+    getStartetTidspunkt() {
+        return this.taxameter.getStartetTidspunkt();
+    }
+
+    get afstand() {
+        return this.taxameter.afstand;
+    }
+
+    startTur() {
+        return this.taxameter.startTur();  
+    }
+
+    get procentKorteTure(){
+        return (this.antalKort/(this.antalKort + this.antalLang))*100;
+    }
+    get procentLangeTure(){
+        return (this.antalLang/(this.antalKort + this.antalLang))*100;
+    }
+
+    slutTur() {
+        if (this.afstand < 1){
+            this.antalKort += 1;
+        }else{
+            this.antalLang += 1;
+        }
+        console.log(this.procentKorteTure + "% ture på under 1 km");
+        console.log(this.procentLangeTure + "% ture på over 1 km");
+        return this.taxameter.slutTur();
+    }
+
+    koer(delta_afst) {
+        return this.taxameter.koer(delta_afst);
+    }
+
+    beregnPris() {
+        return this.taxameter.beregnPris();
+    }
+}
 

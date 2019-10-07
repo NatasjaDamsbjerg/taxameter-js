@@ -6,4 +6,6 @@ class StorVognPriceStrategy {
     }
 }
 
-start(new Taxameter(clock, new StorVognPriceStrategy()));
+const taxameter = new Taxameter(clock, new StorVognPriceStrategy())
+const decoratedTaxameter = new SimpleTaxameterDecorator(taxameter);
+start(decoratedTaxameter);

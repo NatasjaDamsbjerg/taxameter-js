@@ -9,5 +9,7 @@ class TaxaPriceStrategy {
         }
     }
 }
-start(new Taxameter(clock, new TaxaPriceStrategy()));
-//return (9 * (turAfstand)) + (6.25 * turTidMinutter) + 39; 
+const taxameter = new Taxameter(clock, new TaxaPriceStrategy())
+const decoratedTaxameter1 = new SimpleTaxameterDecorator(taxameter);
+const decoratedTaxameter2 = new statisticDecorator(decoratedTaxameter1);
+start(decoratedTaxameter2);
